@@ -38,7 +38,8 @@ const firebaseConfig = {
   authDomain: "your-project.firebaseapp.com",
   databaseURL: "https://your-project.firebaseio.com",
   projectId: "your-project-id"
-};```
+};
+ ```
 1. Ouvrir `index.html` dans un navigateur moderne
 2. Pour éviter les restrictions **CORS / ES Modules**, exécuter un serveur HTTP simple :
    - **Python 3** :
