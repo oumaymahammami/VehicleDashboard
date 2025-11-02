@@ -1,5 +1,4 @@
-/* eslint-disable import/no-unresolved, no-undef */
-/* global tf, L */
+
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getDatabase, ref, onValue, set, push, onChildAdded, onChildChanged, get } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
@@ -340,17 +339,19 @@ async function simulateVehicle(interval=2000){
 
     // Sync vehicle data to Firebase
     if (syncEnabled && database) {
+      // Construire explicitement le payload (const pour éviter réassignation/scoping surprenant)
+      const payload = {
+        latitude: Number(data.latitude),
+        longitude: Number(data.longitude),
+        altitude: Number(data.altitude),
+        temperature: Number(data.temperature),
+        humidity: Number(data.humidity),
+        timestamp: data.timestamp || new Date().toISOString()
+      };
+
       try {
+        console.log('[SIM] payload prepared for DB/push', payload);
         console.log('[SIM] writing vehicle_1 to DB');
-        // Construire explicitement le payload dans l'ordre souhaité
-        const payload = {
-          latitude: Number(data.latitude),
-          longitude: Number(data.longitude),
-          altitude: Number(data.altitude),
-          temperature: Number(data.temperature),
-          humidity: Number(data.humidity),
-          timestamp: data.timestamp || new Date().toISOString()
-        };
         await set(ref(database, 'vehicle_1'), payload);
         console.log('[SIM] vehicle_1 write OK');
       } catch (e) {
@@ -358,17 +359,10 @@ async function simulateVehicle(interval=2000){
       }
 
       try {
-        console.log('[SIM] pushing history point');
+        console.log('[SIM] pushing history point with payload:', payload);
         const historyRef = ref(database, 'vehicle_history/vehicle_1');
-        // Push the same ordered payload to history
-        await push(historyRef, {
-          latitude: payload.latitude,
-          longitude: payload.longitude,
-          altitude: payload.altitude,
-          temperature: payload.temperature,
-          humidity: payload.humidity,
-          timestamp: payload.timestamp
-        });
+        // Utiliser directement le même payload pour le push afin d'éviter tout problème de portée
+        await push(historyRef, payload);
         console.log('[SIM] history push OK');
       } catch (e) {
         console.error('[SIM] push history failed', e);
