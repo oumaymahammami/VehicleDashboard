@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -9.6, "left": 4.84, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 236.4,
+      "left": 90.2,
+      "attrs": { "color": "orange" }
+    },
+    { "type": "wokwi-led", "id": "led2", "top": -42, "left": 176.6, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": 44.4,
+      "left": -140.2,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -101.65,
+      "left": 28.8,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 243.95,
+      "left": -105.6,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 167.15,
+      "left": -144,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -38.1, "left": -264.6, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": -72.85,
+      "left": -307.2,
+      "attrs": { "value": "10000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:25", "r1:1", "red", [ "v0" ] ],
+    [ "r1:2", "led2:A", "red", [ "v96", "h104.4" ] ],
+    [ "led2:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "esp:26", "r2:2", "orange", [ "v0" ] ],
+    [ "r2:1", "led1:A", "orange", [ "v28.8", "h211.2" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "v259.2", "h9.6" ] ],
+    [ "esp:27", "r3:2", "blue", [ "v0" ] ],
+    [ "r3:1", "led3:A", "blue", [ "v0" ] ],
+    [ "led3:C", "esp:GND.2", "green", [ "v0" ] ],
+    [ "esp:3V3", "dht1:VCC", "red", [ "v-96", "h-192" ] ],
+    [ "esp:GND.2", "dht1:GND", "black", [ "v-144", "h-240" ] ],
+    [ "esp:4", "r4:1", "green", [ "v-192", "h-288" ] ],
+    [ "r4:2", "dht1:VCC", "green", [ "v-240", "h-336" ] ],
+    [ "esp:4", "dht1:DATA", "green", [ "v-288", "h-384" ] ]
+  ],
+  "dependencies": {}
+}
