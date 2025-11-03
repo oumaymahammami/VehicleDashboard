@@ -3,6 +3,19 @@
 **Description :**
 Interface web pour la **visualisation en temps réel** des données d'un véhicule connecté (IoT).
 Permet de suivre la température, l'humidité, l'altitude, la position GPS, et d'afficher des indicateurs de risque avec un modèle ML (TensorFlow.js).
+## Captures d'écran
+
+### Dashboard – Live Panel
+![Dashboard Live](dashboard_live.png)
+
+### Dashboard – Historical / Statistics
+![Dashboard Historical](dashboard_historical.png)
+
+### Firebase Database
+![Firebase Database](firebase.png)
+
+### Wokwi Simulator (ESP32)
+![Wokwi Simulator](wokwi.png)
 
 ## Fonctionnalités principales
 
