@@ -5,14 +5,14 @@
 
 ---
 
-## Hardware (Wokwi Simulation)
+## Hardware (Physical ESP32)
 
-The data collection part of this project runs on an ESP32 microcontroller:
+The data collection part of this project runs on a **physical ESP32 microcontroller** (not a simulation).
 
 * **Microcontroller:** ESP32
 * **Sensor:** DHT11 (Temperature and Humidity Sensor)
 * **Status Indicators:** 3x LEDs (Green, Orange, Red)
-* **(Note:** The web dashboard is built to also support GPS/Altitude data for future expansion, as described in the project goals.)
+* **Note:** The web dashboard is built to also support GPS/Altitude data for future expansion, as described in the project goals. A `diagram.json` file (or wiring diagram image) is included to describe wiring and pin connections.
 
 ---
 
@@ -31,8 +31,8 @@ The data collection part of this project runs on an ESP32 microcontroller:
 ## Main Files
 
 * `index.html` – User interface and layout
-* `app.js` – Application logic (simulation, collection, analysis, synchronization)
-* `diagram.json` – Wokwi Configuration (ESP32 simulation)
+* `app.js` – Application logic (collection, analysis, synchronization)
+* `diagram.json` – Wiring/diagram description for the physical ESP32 setup
 * `risk_model_tfjs/` – TensorFlow.js model for risk prediction
 
 ---
@@ -53,33 +53,33 @@ The data collection part of this project runs on an ESP32 microcontroller:
 
 If using Firebase, update `app.js` with your project credentials:
 
-``javascript
+```javascript
 const firebaseConfig = {
   apiKey: "your-api-key",
   authDomain: "your-project.firebaseapp.com",
-  databaseURL: "[https://your-project.firebaseio.com](https://your-project.firebaseio.com)",
+  databaseURL: "https://your-project.firebaseio.com",
   projectId: "your-project-id"
-};``
+};
 
+```
 
-## Run the ESP32  ⚙️
-Open the Wokwi simulation environment (if running hardware remotely) or compile and upload the code to your physical ESP32.
+## 🚀 Run the ESP32 ⚙️
 
-Ensure the ESP32 is powered on and actively sending data (simulated or real) according to the diagram.json and code configuration.
+Flash the provided code to your **physical ESP32** (or use your own firmware that matches the dashboard’s expected data format).  
+Ensure the ESP32 is powered on and actively sending data — for example via **Serial**, **HTTP**, or **MQTT** — according to the wiring and configuration described in `diagram.json`.
 
-## Running the Dashboard (Web UI)
-Open index.html in a modern browser.
+Once the ESP32 is running, it will periodically send sensor readings (temperature, humidity, altitude, GPS, and risk values) that will be displayed on the web dashboard in real time.
 
-To avoid CORS / ES Modules restrictions, it's recommended to run a simple HTTP server.
+---
 
-Using Python 3:
+## 🌐 Running the Dashboard (Web UI)
 
-Bash
-``
- python -m http.server 8000 
- ``
-Open http://localhost:8000 in your browser.
+1. Open the `index.html` file in a **modern web browser**.
 
-Data is simulated every 2 seconds (configurable via INTERVAL_MS in app.js).
+2. To avoid **CORS** or **ES Modules** restrictions, it’s recommended to run a simple local **HTTP server** instead of opening the file directly.
 
-The History and Statistics panel updates automatically.
+   Using **Python 3**, open a terminal in your project folder and run:
+
+   ```bash
+   python -m http.server 8000
+   ```
