@@ -7,16 +7,16 @@
 // ===========================================
 //          1. CONFIGURATION WIFI
 // ===========================================
-#define WIFI_SSID "Wifi"        // ✅ MIS A JOUR
-#define WIFI_PASSWORD "12345689"  // ✅ MIS A JOUR
+#define WIFI_SSID "*******"        // ✅ MIS A JOUR
+#define WIFI_PASSWORD "*********"  // ✅ MIS A JOUR
 
 // ===========================================
 //          2. CONFIGURATION FIREBASE (HTTPClient)
 // ===========================================
 
-#define databaseURL "vehicule-tp-default-rtdb.europe-west1.firebasedatabase.app" // ✅ MIS A JOUR
+#define databaseURL "****" // ✅ MIS A JOUR
 // Remplacer par votre clé API Firebase
-#define apiKey "AIzaSyD9SbHkGYkNJiULxf4LjN0dt4Wc93RVGRs" // ✅ MIS A JOUR
+#define apiKey "*******" // ✅ MIS A JOUR
 
 // ===========================================
 //          3. CONFIGURATION MATERIELLE

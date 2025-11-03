@@ -53,10 +53,33 @@ The data collection part of this project runs on an ESP32 microcontroller:
 
 If using Firebase, update `app.js` with your project credentials:
 
-```javascript
+``javascript
 const firebaseConfig = {
   apiKey: "your-api-key",
   authDomain: "your-project.firebaseapp.com",
   databaseURL: "[https://your-project.firebaseio.com](https://your-project.firebaseio.com)",
   projectId: "your-project-id"
-};
+};``
+
+
+## Run the ESP32  ⚙️
+Open the Wokwi simulation environment (if running hardware remotely) or compile and upload the code to your physical ESP32.
+
+Ensure the ESP32 is powered on and actively sending data (simulated or real) according to the diagram.json and code configuration.
+
+## Running the Dashboard (Web UI)
+Open index.html in a modern browser.
+
+To avoid CORS / ES Modules restrictions, it's recommended to run a simple HTTP server.
+
+Using Python 3:
+
+Bash
+``
+ python -m http.server 8000 
+ ``
+Open http://localhost:8000 in your browser.
+
+Data is simulated every 2 seconds (configurable via INTERVAL_MS in app.js).
+
+The History and Statistics panel updates automatically.
