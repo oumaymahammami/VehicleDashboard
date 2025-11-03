@@ -7,7 +7,7 @@
 
 ## Hardware (Physical ESP32)
 
-The data collection part of this project runs on a **physical ESP32 microcontroller** (not a simulation).
+The data collection part of this project runs on a **physical ESP32 microcontroller**.
 
 * **Microcontroller:** ESP32
 * **Sensor:** DHT11 (Temperature and Humidity Sensor)
@@ -34,16 +34,6 @@ The data collection part of this project runs on a **physical ESP32 microcontrol
 * `app.js` – Application logic (collection, analysis, synchronization)
 * `diagram.json` – Wiring/diagram description for the physical ESP32 setup
 * `risk_model_tfjs/` – TensorFlow.js model for risk prediction
-
----
-
-## Prerequisites
-
-* Modern browser
-* External libraries (via CDN):
-    * Leaflet – Interactive map
-    * TensorFlow.js – Machine Learning
-    * Firebase (optional) – Data storage and history
 
 ---
 
